@@ -60,14 +60,15 @@ router.post('/login', (req, res) => {
 
                 } else {
                     console.log(data);
-                    res.render('login.twig',{connected:'ok'});
+                    res.redirect('/users/getUsers');
                 }
             }
         })
 });
 
 router.get('/getUsers', (req, res) => {
-    var users = user.find({}).populate("option").exec((err, data) => {
+    var users = user.find({}).populate("option")
+        .exec((err, data) => {
         if (err)
             console.log(err)
         else {

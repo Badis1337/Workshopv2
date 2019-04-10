@@ -18,7 +18,10 @@ var userShema=mongoose.Schema({
 
     adresse:String,
     password:String ,
-
+    option:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Option'
+    }
 });
 
 

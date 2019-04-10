@@ -19,11 +19,11 @@ router.post('/addOption', async (req, res) => {
 
     };
     var option_added = await option.insertMany(obj);
-    /*    if (user_added) {
-            res.status(200).send(user_added);
+        if (option_added) {
+            res.redirect('/users/getusers');
 
-        }*/
-    res.redirect('/users/getusers');
+        }
+
 });
 
 module.exports = router;
