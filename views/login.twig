@@ -1,0 +1,16 @@
+<fieldset>
+    <legend>Login form ! </legend>
+    <form action="/users/loginUser" method="post">
+<table>
+    <tr><td>Username</td> <td><input name="username" value="" type="text"></td></tr>
+    <tr><td>Password</td> <td><input name="password" value="" type="text"></td></tr>
+
+</table>
+<input type="submit" value="connect">
+    </form>
+{% if connected=="ok" %}
+    <p style="color:green"> Connected !</p>
+{% else  %}
+    <p style="color:red"> Not Connected :( !</p>
+{% endif %}
+</fieldset>

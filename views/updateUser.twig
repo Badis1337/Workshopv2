@@ -1,0 +1,33 @@
+
+
+<h1>Formulaire de modification</h1>
+<form action="/users/mod/{{ obj._id }}" method="post">
+    <table>
+
+        <tr>
+            <td>Name :</td>
+            <td><input type="text" value="{{ obj.name }}" name="name"></td>
+        </tr>
+        <tr>
+            <td>Age :</td>
+            <td><input type="text" value="{{ obj.age }}" name="age"></td>
+        </tr>
+        <tr>
+            <td>Classe :</td>
+            <td><input type="text" value="{{ obj.classe }}" name="classe"></td>
+        </tr>
+        <tr>
+            <td>Adresse :</td>
+            <td><input type="text" value="{{ obj.option }}" name="option"></td>
+        </tr>
+        <tr>
+            <td>Password :</td>
+            <td><input type="text" value="{{ obj.password }}" name="password"></td>
+        </tr>
+
+
+    </table>
+    <input type="submit" value="modifier"/>
+
+
+</form>

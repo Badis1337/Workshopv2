@@ -16,13 +16,27 @@
         </tr>
         <tr>
             <td>Adresse :</td>
-            <td><input type="text" value="" name="adresse"></td>
+            <td><input type="text" value="" name="option"></td>
         </tr>
         <tr>
             <td>Password :</td>
             <td><input type="text" value="" name="password"></td>
         </tr>
+        <tr>
+            <td><label>options</label></td>
+            <td>
 
+            <select name="option_id">
+                <optgroup label="Select choice">
+
+                {% for opt in option %}
+
+                    <option  value="{{ opt._id }}">{{ opt.nom }}</option>
+                {% endfor %}
+                </optgroup>
+            </select>
+            </td>
+        </tr>
 
     </table>
     <input type="submit" value="ajouter"/>
