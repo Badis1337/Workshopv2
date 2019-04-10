@@ -4,8 +4,8 @@
         <legend>{{ user.name }}</legend>
         <p>age : {{ user.age }} </p>
         <p>classe: {{ user.classe }}</p>
-        <p>option: {{ user.option.nom }} </p>
-
+        <p>nom option: {{ user.option.nom }} </p>
+        <p>score option: {{ user.option.score }} </p>
         <span> <a href="/users/delete/{{ user._id }}">supprimer</a></span>
         <a href="/users/update/{{ user._id }}">modifier</a>
     </fieldset>
