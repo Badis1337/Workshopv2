@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require('../model/user');
-var option = require('../model/option');
+var option = require('../model/option.js');
 
 /*/!* GET users listing. *!/
 router.get('/', function(req, res, next) {
@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/addUser', (req, res) => {
-    option.find({}).exec((err,data)=>{
-        if(err)
+    option.find({}).exec((err, data) => {
+        if (err)
             console.log(err);
-        else{
+        else {
 
-            res.render('addUser.twig',{'option':data});
+            res.render('addUser.twig', {'option': data});
         }
 
 
@@ -30,23 +30,21 @@ router.post('/addUser', async (req, res) => {
         classe: req.body.classe,
         adresse: req.body.adresse,
         password: req.body.password,
-        option: {_id:req.body.option_id}
     };
-    console.log(req.body.option_id);
-    var user_added = await user.insertMany(obj);
-    /*    if (user_added) {
-            res.status(200).send(user_added);
+    user.insertMany(obj);
 
-        }*/
     res.redirect('/users/getUsers');
 });
+
 
 router.get('/login', (req, res) => {
     res.render('login.twig', {connected: "not ok"});
 });
 
-router.post('/loginUser', (req, res) => {
-    const user_logged = user.findOne({name: req.body.username, password: req.body.password})
+
+router.post('/login', (req, res) => {
+    const user_logged = user.findOne({name: req.body.username,
+        password: req.body.password})
         .exec((err, data) => {
             if (err) {
                 console.log(err);
@@ -54,6 +52,7 @@ router.post('/loginUser', (req, res) => {
 
 
             } else {
+                //user non trouvé
                 if (data == null) {
                     console.log(data);
 
@@ -61,7 +60,7 @@ router.post('/loginUser', (req, res) => {
 
                 } else {
                     console.log(data);
-                    res.redirect('/users/getusers');
+                    res.render('login.twig',{connected:'ok'});
                 }
             }
         })
@@ -77,14 +76,13 @@ router.get('/getUsers', (req, res) => {
     })
 });
 
-router.get('/delete/:id',(req,res,next)=>
-{
-    let query ={"_id":req.params.id};
+router.get('/delete/:id', (req, res, next) => {
+    let query = {"_id": req.params.id};
     console.log(query);
-    user.remove(query,(err)=>{
-        if(err)
-        {console.log(err);}
-        else{
+    user.remove(query, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
             res.redirect('/users/getusers');
 
         }
@@ -93,7 +91,7 @@ router.get('/delete/:id',(req,res,next)=>
 });
 
 
-router.post('/mod/:id',(req,res,next)=> {
+router.post('/mod/:id', (req, res, next) => {
     var name = req.body.name;
     var age = req.body.age;
     var classe = req.body.classe;
@@ -110,14 +108,13 @@ router.post('/mod/:id',(req,res,next)=> {
         }
     });
 });
-router.get('/update/:id',(req,res,next)=>
-{
-    let query ={"_id":req.params.id};
+router.get('/update/:id', (req, res, next) => {
+    let query = {"_id": req.params.id};
     console.log(query);
-    user.findById(query,(err,data)=>{
-        if(err)
-        {console.log(err);}
-        else {
+    user.findById(query, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
             res.render('updateUser.twig', {obj: data});
 
         }
